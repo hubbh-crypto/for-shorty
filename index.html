@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>A letter, just for you</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0f14;--fg:#f3ece2;--gold:#d9b27c;--wax:#a3262a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:Georgia,'Times New Roman',serif}
+#gate{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px}
+#gate h1{font-weight:400;font-size:1.6rem;margin:0}#gate p{margin:0;opacity:.7}
+#gate input{background:#1a1d25;border:1px solid #3a3f4d;color:var(--fg);padding:12px 16px;border-radius:10px;font:inherit;text-align:center;width:min(280px,80vw)}
+button{background:var(--gold);color:#1a1208;border:0;border-radius:10px;padding:12px 26px;font:inherit;cursor:pointer}
+#err{color:#e58;min-height:1.2em;font-size:.9rem}
+#story{display:block}
+#hud{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:20;padding:10px 18px;font-size:.8rem;letter-spacing:.08em;background:linear-gradient(#0d0f14cc,transparent)}
+#bar{height:2px;background:#ffffff25;margin-top:6px;position:relative}#dot{position:absolute;top:-9px;left:0;font-size:16px;transform:translateX(-50%)}
+.scene{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 20px 40px;gap:20px;text-align:center}
+.scene img{max-width:min(440px,90vw);max-height:62vh;border-radius:14px;box-shadow:0 20px 60px #000a;opacity:0;transform:translateY(30px) scale(.97);transition:1.4s}
+.scene p{max-width:420px;line-height:1.7;opacity:0;transform:translateY(20px);transition:1.4s .5s;margin:0;font-size:1.05rem}
+.scene.in img,.scene.in p{opacity:1;transform:none}
+.flight{height:380vh;position:relative}
+.sky{position:sticky;top:0;height:100vh;overflow:hidden;background:linear-gradient(#0a1230,#2a2347 60%,#6b4a5e)}
+.cloud{position:absolute;width:260px;height:70px;border-radius:50%;background:radial-gradient(#ffffff40,transparent 70%);filter:blur(6px)}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:tw 3s infinite}
+@keyframes tw{50%{opacity:.2}}
+#dove{position:absolute;top:50%;left:50%;width:min(420px,85vw);margin:-30% 0 0 -210px;mix-blend-mode:screen;will-change:transform}
+#miles{position:absolute;bottom:12vh;width:100%;text-align:center;font-size:2.2rem;color:var(--gold)}#miles small{display:block;font-size:.8rem;letter-spacing:.2em;opacity:.7}
+#end{position:relative;overflow:hidden;padding-bottom:90px}
+.paper{position:relative;width:min(460px,92vw);padding:46px 30px 40px;border-radius:4px;color:#3a2c1e;text-align:left;
+background:repeating-linear-gradient(#f6ecd8 0 33px,#e6d6b8 33px 34px);box-shadow:0 25px 60px #000b,inset 0 0 60px #c9a76a55;
+font-family:'Caveat','Segoe Script',cursive;font-size:1.45rem;line-height:34px;opacity:0;transform:translateY(40px) rotate(-1deg);transition:1.6s}
+.paper:before{content:"";position:absolute;left:34px;top:0;bottom:0;width:1px;background:#c9606055}
+.in .paper{opacity:1;transform:none}
+.paper .date{font-size:1.1rem;text-align:right;opacity:.7}
+.paper .hello{font-family:'Playfair Display',Georgia,serif;font-size:1.3rem}
+.paper p{margin:0 0 34px;opacity:0;transform:translateY(10px);transition:1.2s}
+.in .paper p{opacity:1;transform:none}
+.paper .sign{text-align:right;font-size:1.8rem;font-weight:600;margin-top:10px}
+.paper .seal{width:64px;height:64px;border-radius:50%;margin:10px auto 0;display:grid;place-items:center;color:#f3c9c9;font-size:26px;
+background:radial-gradient(circle at 35% 30%,#d4474b,#8d1e22);box-shadow:0 4px 10px #0008,inset 0 0 8px #0006}
+.petal{position:absolute;top:-30px;width:12px;height:16px;border-radius:70% 0 70% 0;background:#c9484d;opacity:.7;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+</style></head><body>
+<div id="story">
+<div id="hud"><span id="mi">0 miles</span><div id="bar"><span id="dot">🕊️</span></div></div>
+<section class="scene"><img src="img/pic1.jpg" alt=""><p>I wrote you a letter, sealed it with my whole heart, and let the dove go.</p></section>
+<div class="flight"><div class="sky" id="sky"></div></div>
+<section class="scene" id="win"><img src="img/pic3.jpg" alt=""><p>Miles and miles later, a soft tap at your window…</p></section>
+<section class="scene"><img src="img/pic4.jpg" alt=""><p>Take it. It's from me, and it's only for you.</p></section>
+<section class="scene"><img src="img/pic5.jpg" alt=""><p>Break the seal gently…</p></section>
+<section class="scene" id="end"><img src="img/pic6.jpg" alt=""><div class="paper" id="paper">
+<!-- ===================== WRITE YOUR LETTER BELOW ===================== -->
+<div class="date">06-10-2026</div>
+<p class="hello">My dearest,</p>
+<p>To the one who has unowingly became favourite part of my life...</p>
+<p>Word alone could never truly describe how much u meant to me.
+    I never really thought it will be possible for me to care this deeply for someone again, yet somehow u came into my life and change that.</p>
+    <p>I somehow feel happy and scared at the same time..... Happy that u came in my life in an unexpected way. scared about what our future has store for us. would u still be there. 
+    Would we still be together. would we always be together like this. Even tho our future is not clear i sure hope we would still be together for a long time. 
+</p>
+<p>Enough about the future now. Let me enjoy the present one and when future came we will deal with it together.
+     <br>I love you sooo much.
+   <br> muahhhh  
+</p>
+<p class="sign">Forever yours,</p>
+<!-- ===================== END OF YOUR LETTER ===================== -->
+<div class="seal">♥</div></div></section>
+</div>
+<script>
+const MILES=217;
+const $=s=>document.querySelector(s);
+init();
+function init(){
+const sky=$("#sky");
+for(let i=0;i<60;i++){const s=document.createElement("i");s.className="star";s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s`;sky.appendChild(s)}
+const clouds=[];for(let i=0;i<7;i++){const c=document.createElement("div");c.className="cloud";c.style.top=(8+i*13)+"%";c.dataset.s=.5+Math.random()*2;c.dataset.x=Math.random()*120;sky.appendChild(c);clouds.push(c)}
+sky.insertAdjacentHTML("beforeend",`<img id="dove" src="img/pic2.jpg" alt=""><div id="miles"><span id="m2">0</span><small>MILES TO YOU</small></div>`);
+const dove=$("#dove"),fl=$(".flight");
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("in")),{threshold:.35});
+document.querySelectorAll(".scene").forEach(s=>io.observe(s));
+document.querySelectorAll(".paper p").forEach((p,i)=>p.style.transitionDelay=(1+i*1.1)+"s");
+for(let i=0;i<14;i++){const p=document.createElement("i");p.className="petal";p.style.cssText=`left:${Math.random()*100}%;animation-duration:${7+Math.random()*7}s;animation-delay:${Math.random()*8}s`;$("#end").appendChild(p)}
+function on(){const y=scrollY,end=$("#win").offsetTop,tot=Math.min(1,y/end);
+$("#mi").textContent=Math.round(tot*MILES).toLocaleString()+" miles";$("#m2").textContent=Math.round(tot*MILES).toLocaleString();
+$("#dot").style.left=(tot*100)+"%";
+const r=fl.getBoundingClientRect(),p=Math.max(0,Math.min(1,-r.top/(r.height-innerHeight)));
+dove.style.transform=`translate(${(p*2-1)*55}vw,${Math.sin(p*9)*28}px) rotate(${Math.cos(p*9)*4}deg)`;
+clouds.forEach(c=>c.style.transform=`translateX(${((c.dataset.x-p*c.dataset.s*160)%130)}vw)`)}
+addEventListener("scroll",on,{passive:true});on()}
+</script></body></html>
